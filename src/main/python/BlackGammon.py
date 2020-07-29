@@ -112,10 +112,10 @@ class Blackgammon():
 
     def requestPlayerMove(self,colour, dice,player):
         numberOfMoves = 0
-        pointToMoveFrom = player.getPlayerPosition(colour,player,self.middle[self.black])
+        pointToMoveFrom = player.getPlayerPosition(colour,self.middle[self.black])
         # A negative pointToMoveFrom indicates the players wants to stop
         if pointToMoveFrom >= 0:
-            numberOfMoves = player.getPlayerDieToMove(colour,dice,player)
+            numberOfMoves = player.getPlayerDieToMove(colour,dice)
         return pointToMoveFrom, numberOfMoves
 
     # Determine the direction of the move
@@ -240,6 +240,11 @@ class Blackgammon():
 
         return pointToMoveFrom, numberOfMoves
 
+    def makePlayerMoves(self,currentBoard,colour,moves):
+        for move in moves:
+            self.makePlayerMove(currentBoard,colour,move[0],move[1])
+        return currentBoard
+
     def makePlayerMove(self,currentBoard,colour,pointToMoveFrom, numberOfMoves):
         #Decrement chip from position to move from
         positionFromCount = currentBoard[pointToMoveFrom][1]-1
@@ -266,7 +271,7 @@ class Blackgammon():
             pointToMoveFrom, numberOfMoves = self.validPlayerRound(currentBoard,colour,dice,player)
             currentBoard = self.makePlayerMove(currentBoard,colour,pointToMoveFrom, numberOfMoves)
             self.displayBoard(currentBoard,player)
-            if pointToMoveFrom >= 0:
+            if pointToMoveFrom >= 0 and self.dieExists(dice,numberOfMoves):
                 dice.remove(numberOfMoves)
         return currentBoard, pointToMoveFrom
 

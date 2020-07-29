@@ -52,11 +52,11 @@ class ComputerPlayer():
             else:
                 self.determinePositionAndMove(False)
 
-    def getPlayerPosition(self,colour,player,maxPosition):
+    def getPlayerPosition(self,colour,maxPosition):
         self.rankingMove()
         return self.playerPosition
 
-    def getPlayerDieToMove(self,colour,dice,player):
+    def getPlayerDieToMove(self,colour,dice):
         return self.playerMove
 
     def displayToPlayer(self,message="",ending=""):

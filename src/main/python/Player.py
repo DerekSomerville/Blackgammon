@@ -14,15 +14,15 @@ class Player():
                 print("Please enter an integer")
         return answerAsInteger
 
-    def getPlayerPosition(self,colour,player,maxPosition):
-        pointToMoveFrom = player.requestIntegerFromPlayer("Please enter position to move for " + colour)
+    def getPlayerPosition(self,colour,maxPosition):
+        pointToMoveFrom = self.requestIntegerFromPlayer("Please enter position to move for " + colour)
         while not pointToMoveFrom <= maxPosition:
             print("Postion does not exist, please try again")
             pointToMoveFrom = self.requestIntegerFromPlayer("Please enter position to move for " + colour)
         return pointToMoveFrom
 
-    def getPlayerDieToMove(self,colour,dice,player):
-        numberOfMoves = player.requestIntegerFromPlayer("Please enter number of spaces to move for " + colour)
+    def getPlayerDieToMove(self,colour,dice):
+        numberOfMoves = self.requestIntegerFromPlayer("Please enter number of spaces to move for " + colour)
         # We want to check the player enters one of the die
         while numberOfMoves not in dice:
             print("Please select from",dice)
